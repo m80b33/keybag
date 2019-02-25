@@ -3,15 +3,17 @@ Small keylogger on python
 
 So the main point of this keylogger is to make logfile more readable. ^^
 
+***
+ps:
+
 Only for learning etc
 
 Dont be evil.
 
-
-
 ***
-psps
-decoding:
+psps:
+
+decoding
 
 import base64
 
